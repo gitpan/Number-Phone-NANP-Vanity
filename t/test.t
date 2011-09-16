@@ -92,9 +92,9 @@ my @rules = (
     "6138565656|last_three_pairs_repeat|2",
     "6138565650|last_three_pairs_repeat|0",
     "6134642346|matches_dictionary|0",
-    "6134642686|matches_dictionary|1|for 1 point\$",    # NUM
-    "6134648378|matches_dictionary|2|for 2 points",     # TEST
-    "6133569377|matches_dictionary|5",                  # FLOWERS
+    "6134642686|matches_dictionary|1|^Matches word \"NUM\" for 1 point\$",
+    "6134648378|matches_dictionary|2|for 2 points",
+    "6133569377|matches_dictionary|5",
 );
 
 foreach my $rule (@rules) {

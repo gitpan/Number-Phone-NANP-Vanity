@@ -4,7 +4,7 @@ use Moose;
 use Locale::Maketext::Simple;
 use true;
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 #
 # ATTRIBUTES
@@ -228,7 +228,7 @@ sub _rule_matches_dictionary {
     
     my $word;
     my $score = 0;
-    foreach $word (@dict) {
+    while ($word = shift @dict) {
         my $word_length = length($word);
         next if $word_length > 7;
         next if $word !~ $regex;
@@ -242,8 +242,10 @@ sub _rule_matches_dictionary {
     }
     
     return 0 unless $score;
-    return ($score, loc('Matches word "[_1]" for [quant,_2,point]',
-        $word, $score));
+    return (
+        $score,
+        loc('Matches word "[_1]" for [quant,_2,point]', uc($word), $score)
+    );
 }
 
 #
@@ -275,7 +277,7 @@ Number::Phone::NANP::Vanity - Calculate vanity score of a NANP phone number
 
 =head1 VERSION
 
-0.03
+0.04
 
 =head1 SYNOPSIS
 
