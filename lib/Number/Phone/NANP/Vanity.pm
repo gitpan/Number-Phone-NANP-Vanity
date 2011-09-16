@@ -4,7 +4,7 @@ use Moose;
 use Locale::Maketext::Simple;
 
 use true;
-use version 0.77; our $VERSION = version->declare("v0.0.1");
+use version 0.77; our $VERSION = version->declare("v0.0.2");
 
 #
 # ATTRIBUTES
@@ -500,4 +500,7 @@ This software is copyright (c) 2011 by Roman F.
 
 This is free software; you can redistribute it and/or modify it under the
 same terms as the Perl 5 programming language system itself.
- 
+
+=cut
+
+__PACKAGE__->meta->make_immutable;

@@ -11,7 +11,11 @@ use ExtUtils::MakeMaker 6.30;
 my %WriteMakefileArgs = (
   "ABSTRACT" => "Calculate vanity score of a NANP phone number",
   "AUTHOR" => "Roman F. <romanf\@cpan.org>",
-  "BUILD_REQUIRES" => {},
+  "BUILD_REQUIRES" => {
+    "Test::More" => 0,
+    "strict" => 0,
+    "warnings" => 0
+  },
   "CONFIGURE_REQUIRES" => {
     "ExtUtils::MakeMaker" => "6.30"
   },
@@ -19,8 +23,13 @@ my %WriteMakefileArgs = (
   "EXE_FILES" => [],
   "LICENSE" => "perl",
   "NAME" => "Number::Phone::NANP::Vanity",
-  "PREREQ_PM" => {},
-  "VERSION" => "v0.0.1",
+  "PREREQ_PM" => {
+    "Locale::Maketext::Simple" => 0,
+    "Moose" => 0,
+    "true" => 0,
+    "version" => "0.77"
+  },
+  "VERSION" => "v0.0.2",
   "test" => {
     "TESTS" => "t/*.t"
   }
