@@ -26,10 +26,9 @@ my %WriteMakefileArgs = (
   "PREREQ_PM" => {
     "Locale::Maketext::Simple" => 0,
     "Moose" => 0,
-    "true" => 0,
-    "version" => "0.77"
+    "true" => 0
   },
-  "VERSION" => "v0.0.2",
+  "VERSION" => "0.03",
   "test" => {
     "TESTS" => "t/*.t"
   }

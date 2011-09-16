@@ -2,9 +2,9 @@ package Number::Phone::NANP::Vanity;
 
 use Moose;
 use Locale::Maketext::Simple;
-
 use true;
-use version 0.77; our $VERSION = version->declare("v0.0.2");
+
+our $VERSION = '0.03';
 
 #
 # ATTRIBUTES
@@ -275,7 +275,7 @@ Number::Phone::NANP::Vanity - Calculate vanity score of a NANP phone number
 
 =head1 VERSION
 
-0.0.1
+0.03
 
 =head1 SYNOPSIS
 
@@ -504,3 +504,4 @@ same terms as the Perl 5 programming language system itself.
 =cut
 
 __PACKAGE__->meta->make_immutable;
+no Moose;
