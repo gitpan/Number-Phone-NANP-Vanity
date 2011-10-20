@@ -95,6 +95,8 @@ my @rules = (
     "6134642686|matches_dictionary|1|^Matches word \"NUM\" for 1 point\$",
     "6134648378|matches_dictionary|2|for 2 points",
     "6133569377|matches_dictionary|5",
+    "6132333322|digit_repeats|3|Digit 3 repeats 4 times for 3 points",
+    "6132333222|digit_repeats|4|Digit 3 repeats 3 times for 2 points. Digit 2",
 );
 
 foreach my $rule (@rules) {

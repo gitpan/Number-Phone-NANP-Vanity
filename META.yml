@@ -19,4 +19,4 @@ requires:
   Locale::Maketext::Simple: 0
   Moose: 0
   true: 0
-version: 0.04
+version: 0.05

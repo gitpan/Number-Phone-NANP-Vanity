@@ -4,7 +4,7 @@ use Moose;
 use Locale::Maketext::Simple;
 use true;
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 #
 # ATTRIBUTES
@@ -72,6 +72,7 @@ has 'rules' => (
             sub_is_sequential_desc
             last_three_pairs_repeat
             matches_dictionary
+            digit_repeats
         /]
     },
     handles    => {
@@ -214,6 +215,23 @@ sub _rule_sub_is_sequential_desc {
 
 sub _rule_last_three_pairs_repeat {
     return $_[0]->nxx_sub =~ m|(\d{2})(\1{2})$| ? 2 : 0;
+}
+
+sub _rule_digit_repeats {
+    my $num = $_[0]->number;
+    my $score = 0;
+    my @desc;
+
+    while ($num =~ m|(\d)(\1{2,})|g) {
+        my $digit = $1;
+        my $size  = length($2) + 1;
+
+        $score += $size - 1;
+        push @desc, loc('Digit [_1] repeats [_2] times for [quant,_3,point].',
+            $digit, $size, $score);
+    }
+    
+    return ($score, join(' ', @desc));
 }
 
 sub _rule_matches_dictionary {
@@ -443,6 +461,17 @@ E.g. 800-5-B<121212>
 
 Gets 2 points.
 
+=head2 digit_repeats
+
+Checks the entire number for 3 or more consequitive repeating digits.
+
+E.g. 800-22B<7-777>1
+
+There are 4 consequitive digits 7.
+
+Gets 1 point for each repetition over 2 digits long. E.g. 1 point for 3 digits,
+2 points for 4 digits.
+
 =head2 matches_dictionary
 
 The number matches a word provided via dictionary attribute. The words are
@@ -486,11 +515,11 @@ Traits?
 
 =head1 CAVEATS
 
-Due to the fluid nature of this module, the rules might be changed any time. New
-rules might be added later on. Therefore you should not rely on the score being
-fair across multiple sessions. The score should be used to compare the number
-vanity during one session run. In other words, the score shall not be recorded
-and compared against in the future.
+Due to the fluid nature of this module, the rules might be changed at any time.
+New rules might be added later on. Therefore you should not rely on the score
+being fair across multiple sessions. The score should be used to compare the
+number vanity during one session run. In other words, the score shall not be
+recorded and compared against in the future.
 
 =head1 AUTHOR
 
