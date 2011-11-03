@@ -4,7 +4,7 @@ use Moose;
 use Locale::Maketext::Simple;
 use true;
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 
 #
 # ATTRIBUTES
@@ -218,7 +218,9 @@ sub _rule_last_three_pairs_repeat {
 }
 
 sub _rule_digit_repeats {
-    my $num = $_[0]->number;
+    my $self = shift;
+
+    my $num = $self->number;
     my $score = 0;
     my @desc;
 
@@ -226,6 +228,12 @@ sub _rule_digit_repeats {
         my $digit = $1;
         my $size  = length($2) + 1;
 
+        # skip if match found inside repeating nxx as it has it's own rule
+        next if
+            $size == 3 &&
+            $digit eq substr($self->nxx, 0 , 1) &&
+            $self->_rule_nxx_repeats;
+        
         $score += $size - 1;
         push @desc, loc('Digit [_1] repeats [_2] times for [quant,_3,point].',
             $digit, $size, $score);

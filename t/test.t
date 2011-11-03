@@ -97,6 +97,7 @@ my @rules = (
     "6133569377|matches_dictionary|5",
     "6132333322|digit_repeats|3|Digit 3 repeats 4 times for 3 points",
     "6132333222|digit_repeats|4|Digit 3 repeats 3 times for 2 points. Digit 2",
+    "6135558125|digit_repeats|0", # does not count, because nxx has its own rule
 );
 
 foreach my $rule (@rules) {
